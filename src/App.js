@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <header style={{ backgroundColor: "#111922" }} className="App-header">
         {buildings.map((building) => (
           <Building building={building}></Building>
         ))}

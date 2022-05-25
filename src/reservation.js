@@ -2,10 +2,14 @@ import styled from "styled-components";
 import { Color } from "./constants";
 
 export const Reservation = ({ reservation }) => {
+  const clockArm = GetCurrentClockArmPosition();
   return (
     <ReservationBackground>
       {reservation.name.split(" ")[0]}
       <ReservationGreenBar>
+        {clockArm.visible ? (
+          <ClockArm style={{ left: clockArm.position + "px" }}></ClockArm>
+        ) : null}
         <CenterContentContainer>
           <ClockNumberContainer>
             <ClockNumber>8</ClockNumber>
@@ -38,7 +42,6 @@ export const Reservation = ({ reservation }) => {
 
 const RedSpans = ({ reservation }) => {
   if (reservation.reservedTimes.length > 0) {
-    console.log(reservation.reservedTimes);
     return reservation.reservedTimes.map((reservation) => {
       return (
         <RedSpan
@@ -68,6 +71,19 @@ const RedSpan = ({ startTime, endTime }) => {
     ></ReservationRedBar>
   );
 };
+
+function GetCurrentClockArmPosition() {
+  const currentDate = new Date();
+  const currentHours = currentDate.getHours();
+  const currentMinutes = currentDate.getMinutes();
+  if (currentHours < 17 && currentHours > 8) {
+    return {
+      visible: true,
+      position: (currentHours - 7) * 10 + currentMinutes / 6 - 1,
+    };
+  }
+  return { visible: false, position: 0 };
+}
 
 /**
  *
@@ -146,14 +162,24 @@ const ClockNumberContainer = styled.div`
   width: 100px;
   justify-content: space-between;
   display: flex;
-  z-index: 1;
+  z-index: 2;
   position: absolute;
-  top: -16px;
+  top: -14px;
   left: 5px;
+  color: white;
+  color: rgba(255, 255, 255, 0.9);
 `;
 
 const ClockNumber = styled.div`
   width: 12px;
   height: 12px;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
+`;
+
+const ClockArm = styled.div`
+  position: absolute;
+  width: 2px;
+  height: 15px;
+  background-color: ${Color.Background};
+  z-index: 1;
 `;
