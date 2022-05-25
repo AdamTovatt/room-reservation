@@ -6,21 +6,25 @@ import styled from "styled-components";
 import { Building } from "./reservationContainer";
 
 function App() {
-  const [buildings, setBuildings] = useState([]);
+  const [apiResponse, setApiResponse] = useState([]);
   useEffect(() => {
     fetch("https://room-reservation-api.herokuapp.com/schedule/get?dayOffset=0")
       .then((response) => response.json())
       .then((responseData) => {
-        setBuildings(responseData);
+        setApiResponse(responseData);
       });
   }, []);
+
+  console.log(apiResponse);
 
   return (
     <div className="App">
       <header style={{ backgroundColor: "#111922" }} className="App-header">
-        {buildings.map((building) => (
-          <Building building={building}></Building>
-        ))}
+        {apiResponse.buildings
+          ? apiResponse.buildings.map((building) => (
+              <Building building={building}></Building>
+            ))
+          : null}
       </header>
     </div>
   );

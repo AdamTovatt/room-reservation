@@ -4,7 +4,7 @@ import { Color } from "./constants";
 export const Reservation = ({ reservation }) => {
   const clockArm = GetCurrentClockArmPosition();
   return (
-    <ReservationBackground>
+    <ReservationBackground style={{ opacity: reservation.isAvailable ? 1 : 1 }}>
       {reservation.name.split(" ")[0]}
       <ReservationGreenBar>
         {clockArm.visible ? (
