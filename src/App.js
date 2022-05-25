@@ -4,6 +4,7 @@ import { Reservation } from "./reservation";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Building } from "./reservationContainer";
+import { Helmet } from "react-helmet";
 
 function App() {
   const [apiResponse, setApiResponse] = useState([]);
@@ -19,6 +20,10 @@ function App() {
 
   return (
     <div className="App">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Lediga Salar KTH</title>
+      </Helmet>
       <header style={{ backgroundColor: "#111922" }} className="App-header">
         {apiResponse.buildings
           ? apiResponse.buildings.map((building) => (
