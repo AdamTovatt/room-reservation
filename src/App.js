@@ -2,11 +2,12 @@ import logo from "./logo.svg";
 import "./App.css";
 import { Reservation } from "./reservation";
 import { useState, useEffect } from "react";
+import { ReservationContainer } from "./reservationContainer";
 
 function App() {
   const [reservations, setReservation] = useState([]);
   useEffect(() => {
-    fetch("https://localhost:5001/schedule/get?dayOffset=0")
+    fetch("https://room-reservation-api.herokuapp.com/schedule/get?dayOffset=0")
       .then((response) => response.json())
       .then((responseData) => {
         setReservation(responseData);
@@ -16,9 +17,11 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {reservations.map((reservation) => (
-          <Reservation reservation={reservation}></Reservation>
-        ))}
+        <ReservationContainer>
+          {reservations.map((reservation) => (
+            <Reservation reservation={reservation}></Reservation>
+          ))}
+        </ReservationContainer>
       </header>
     </div>
   );

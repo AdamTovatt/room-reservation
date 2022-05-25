@@ -2,10 +2,9 @@ import styled from "styled-components";
 import { Color } from "./constants";
 
 export const Reservation = ({ reservation }) => {
-  console.log(reservation);
   return (
     <ReservationBackground>
-      Q
+      {reservation.name.split(' ')[0]}
       <ReservationGreenBar>
         <CenterContentContainer>
           <ClockTickContainer>
@@ -21,8 +20,29 @@ export const Reservation = ({ reservation }) => {
             <ClockTick style={{ height: "4px" }} />
           </ClockTickContainer>
         </CenterContentContainer>
+        <RedSpans reservation={reservation} ></RedSpans>
       </ReservationGreenBar>
     </ReservationBackground>
+  );
+};
+
+const RedSpans = ({reservation}) => {
+  if(reservation.reservedTimes.length > 0)
+  {
+    console.log(reservation.reservedTimes);
+    return (
+      <RedSpan startTime={new Date(reservation.reservedTimes[0].start)} endTime={new Date(reservation.reservedTimes[0].end)}></RedSpan>
+    );
+  }
+  return (
+    ''
+  );
+}
+
+const RedSpan = ({startTime, endTime}) => {
+  const sizeInfo = TimeToPixels(startTime, (endTime - startTime) / 36e5);
+  return (
+    <ReservationRedBar style={{left: sizeInfo.left + "px", width: sizeInfo.width + "px"}}></ReservationRedBar>
   );
 };
 
@@ -33,7 +53,11 @@ export const Reservation = ({ reservation }) => {
  */
 function TimeToPixels(startTime, duration) {
   const left = (startTime.getHours() - 7) * 10;
-  const width = duration * 10;
+  let width = duration * 10;
+
+  if(width + left > 100){
+    width = 100 - left;
+  }
 
   return { left, width };
 }
@@ -44,6 +68,8 @@ const ReservationBackground = styled.div`
   background-color: ${Color.Blue};
   border-radius: 5px;
   position: relative;
+  font-size: 1rem;
+  margin: 0.5rem;
 `;
 
 const CenterContentContainer = styled.div`
@@ -53,7 +79,7 @@ const CenterContentContainer = styled.div`
 `;
 
 const ReservationRedBar = styled.div`
-  width: 100%;
+  width: 30px;
   height: 15px;
   background-color: ${Color.Red};
   border-radius: 0px 0px 5px 5px;
