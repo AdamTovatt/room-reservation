@@ -18,8 +18,6 @@ function App() {
       });
   }, []);
 
-  console.log(apiResponse);
-
   return (
     <div className="App">
       <Helmet>
@@ -29,15 +27,13 @@ function App() {
       <header style={{ backgroundColor: "#111922" }} className="App-header">
         {apiResponse.buildings
           ? 
-          <MainContainer>{apiResponse.buildings.map((building) => (
+          apiResponse.buildings.map((building) => (
               <Building building={building}></Building>
-            )) }</MainContainer>
+            ))
           : <LoadingScreen />}
       </header>
     </div>
   );
 }
-
-const MainContainer = styled.div``
 
 export default App;
