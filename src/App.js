@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Building } from "./reservationContainer";
 import { Helmet } from "react-helmet";
+import LoadingSpin from "react-loading-spin";
+import { LoadingScreen } from "./LoadingScreen";
 
 function App() {
   const [apiResponse, setApiResponse] = useState([]);
@@ -26,13 +28,16 @@ function App() {
       </Helmet>
       <header style={{ backgroundColor: "#111922" }} className="App-header">
         {apiResponse.buildings
-          ? apiResponse.buildings.map((building) => (
+          ? 
+          <MainContainer>{apiResponse.buildings.map((building) => (
               <Building building={building}></Building>
-            ))
-          : null}
+            )) }</MainContainer>
+          : <LoadingScreen />}
       </header>
     </div>
   );
 }
+
+const MainContainer = styled.div``
 
 export default App;
