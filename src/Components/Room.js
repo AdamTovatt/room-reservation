@@ -1,11 +1,12 @@
 import styled from "styled-components";
-import { Color } from "./constants";
+import { Color } from "../Constants";
 
-export const Reservation = ({ reservation }) => {
+export const Room = ({ room }) => {
   const clockArm = GetCurrentClockArmPosition();
+  console.log(room);
   return (
-    <ReservationBackground style={{ opacity: reservation.isAvailable ? 1 : 1 }}>
-      {reservation.name.split(" ")[0]}
+    <ReservationBackground style={{ opacity: room.isAvailable ? 1 : 1 }}>
+      {room.name.split(" ")[0]}
       <ReservationGreenBar>
         {clockArm.visible ? (
           <ClockArm style={{ left: clockArm.position + "px" }}></ClockArm>
@@ -34,15 +35,15 @@ export const Reservation = ({ reservation }) => {
             <ClockTick style={{ height: "4px" }} />
           </ClockTickContainer>
         </CenterContentContainer>
-        <RedSpans reservation={reservation}></RedSpans>
+        <RedSpans room={room}></RedSpans>
       </ReservationGreenBar>
     </ReservationBackground>
   );
 };
 
-const RedSpans = ({ reservation }) => {
-  if (reservation.reservedTimes.length > 0) {
-    return reservation.reservedTimes.map((reservation) => {
+const RedSpans = ({ room }) => {
+  if (room.reservedTimes.length > 0) {
+    return room.reservedTimes.map((reservation) => {
       return (
         <RedSpan
           startTime={new Date(reservation.start)}

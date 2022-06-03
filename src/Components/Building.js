@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { Color } from "./constants";
-import { Reservation } from "./reservation";
+import { Color } from "../Constants";
+import { Room } from "./Room";
 
 export const Building = ({ building }) => {
   return (
@@ -9,7 +9,7 @@ export const Building = ({ building }) => {
         <BuildingName>{building.name}:</BuildingName>
       </BuildingNameContainer>
       {building.rooms.map((room) => (
-        <Reservation reservation={room}></Reservation>
+        <Room room={room}></Room>
       ))}
     </BuildingContainer>
   );

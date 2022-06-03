@@ -1,12 +1,12 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { Reservation } from "./reservation";
+import { Room } from "./Components/Room";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Building } from "./reservationContainer";
+import { Building } from "./Components/Building";
 import { Helmet } from "react-helmet";
 import LoadingSpin from "react-loading-spin";
-import { LoadingScreen } from "./LoadingScreen";
+import { LoadingScreen } from "./Components/LoadingScreen";
 
 function App() {
   const [apiResponse, setApiResponse] = useState([]);
@@ -25,12 +25,13 @@ function App() {
         <title>Lediga Salar KTH</title>
       </Helmet>
       <header style={{ backgroundColor: "#111922" }} className="App-header">
-        {apiResponse.buildings
-          ? 
+        {apiResponse.buildings ? (
           apiResponse.buildings.map((building) => (
-              <Building building={building}></Building>
-            ))
-          : <LoadingScreen />}
+            <Building building={building}></Building>
+          ))
+        ) : (
+          <LoadingScreen />
+        )}
       </header>
     </div>
   );
