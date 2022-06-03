@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Color } from "../Constants";
 import { Room } from "./Room";
 
 export const Building = ({ building }) => {

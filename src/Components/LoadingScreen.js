@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import LoadingSpin from "react-loading-spin";
-import { Color } from "../Constants";
 
 export const LoadingScreen = () => {
   return (
