@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Color } from "../Constants";
+import { Color } from "./constants";
 
 export const Room = ({ room }) => {
   const clockArm = GetCurrentClockArmPosition();
