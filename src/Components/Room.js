@@ -3,9 +3,9 @@ import { Color } from "../Constants";
 
 export const Room = ({ room }) => {
   const clockArm = GetCurrentClockArmPosition();
-  console.log(room);
+  room.isAvailable = GetRoomIsAvailable(room);
   return (
-    <ReservationBackground style={{ opacity: room.isAvailable ? 1 : 1 }}>
+    <ReservationBackground style={{ opacity: room.isAvailable ? 1 : 0.35 }}>
       {room.name.split(" ")[0]}
       <ReservationGreenBar>
         {clockArm.visible ? (
@@ -72,6 +72,25 @@ const RedSpan = ({ startTime, endTime }) => {
     ></ReservationRedBar>
   );
 };
+
+function GetRoomIsAvailable(room) {
+  var currentDate = new Date();
+  for (let i = 0; i < room.reservedTimes.length; i++) {
+    try {
+      if (
+        currentDate > new Date(room.reservedTimes[i].start) &&
+        currentDate < new Date(room.reservedTimes[i].end)
+      ) {
+        return false;
+      }
+    } catch (error) {
+      console.log(
+        "Some shit just went down when processing " + room.name + " " + error
+      );
+    }
+  }
+  return true;
+}
 
 function GetCurrentClockArmPosition() {
   const currentDate = new Date();
