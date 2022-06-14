@@ -5,7 +5,7 @@ export const Room = ({ room }) => {
   const clockArm = GetCurrentClockArmPosition();
   room.isAvailable = GetRoomIsAvailable(room);
   return (
-    <ReservationBackground style={{ opacity: room.isAvailable ? 1 : 0.35 }}>
+    <RoomBackground style={{ opacity: room.isAvailable ? 1 : 0.35 }}>
       {room.name.split(" ")[0]}
       <ReservationGreenBar>
         {clockArm.visible ? (
@@ -37,7 +37,7 @@ export const Room = ({ room }) => {
         </CenterContentContainer>
         <RedSpans room={room}></RedSpans>
       </ReservationGreenBar>
-    </ReservationBackground>
+    </RoomBackground>
   );
 };
 
@@ -131,7 +131,7 @@ function TimeToPixels(startTime, endTime) {
   return { left, width, leftBorder, rightBorder };
 }
 
-const ReservationBackground = styled.div`
+const RoomBackground = styled.div`
   width: 110px;
   height: 54px;
   background-color: ${Color.Blue};
@@ -139,6 +139,7 @@ const ReservationBackground = styled.div`
   position: relative;
   font-size: 1rem;
   margin: 0.4rem;
+  box-shadow: 2px 2px 5px 3px rgba(0,0,0,0.2);
 `;
 
 const CenterContentContainer = styled.div`

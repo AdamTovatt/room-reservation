@@ -7,6 +7,7 @@ import { Building } from "./Components/Building";
 import { Helmet } from "react-helmet";
 import LoadingSpin from "react-loading-spin";
 import { LoadingScreen } from "./Components/LoadingScreen";
+import { RoomInformationModal } from "./Components/RoomInformationModal";
 
 function App() {
   const [apiResponse, setApiResponse] = useState([]);
@@ -25,6 +26,7 @@ function App() {
         <title>Lediga Salar KTH</title>
       </Helmet>
       <header style={{ backgroundColor: "#111922" }} className="App-header">
+        {/* <RoomInformationModal style={{ display: "none" }}></RoomInformationModal> */}
         {apiResponse.buildings ? (
           apiResponse.buildings.map((building) => (
             <Building building={building}></Building>
