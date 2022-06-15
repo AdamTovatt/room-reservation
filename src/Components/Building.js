@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import { Room } from "./Room";
 
-export const Building = ({ building }) => {
+export const Building = ({ building, setRoomModal }) => {
   return (
     <BuildingContainer>
       <BuildingNameContainer>
         <BuildingName>{building.name}:</BuildingName>
       </BuildingNameContainer>
       {building.rooms.map((room) => (
-        <Room room={room}></Room>
+        <Room room={room} setRoomModal={setRoomModal}></Room>
       ))}
     </BuildingContainer>
   );

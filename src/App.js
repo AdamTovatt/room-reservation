@@ -10,6 +10,7 @@ import { LoadingScreen } from "./Components/LoadingScreen";
 import { RoomInformationModal } from "./Components/RoomInformationModal";
 
 function App() {
+  const [roomModal, setRoomModal] = useState(undefined);
   const [apiResponse, setApiResponse] = useState([]);
   useEffect(() => {
     fetch("https://room-reservation-api.herokuapp.com/schedule/get?dayOffset=0")
@@ -26,10 +27,10 @@ function App() {
         <title>Lediga Salar KTH</title>
       </Helmet>
       <header style={{ backgroundColor: "#111922" }} className="App-header">
-        {/* <RoomInformationModal style={{ display: "none" }}></RoomInformationModal> */}
+        {roomModal ? <RoomInformationModal room={roomModal} setRoomModal={setRoomModal} style={{ display: "none" }}></RoomInformationModal> : null}
         {apiResponse.buildings ? (
           apiResponse.buildings.map((building) => (
-            <Building building={building}></Building>
+            <Building building={building} setRoomModal={setRoomModal} ></Building>
           ))
         ) : (
           <LoadingScreen />

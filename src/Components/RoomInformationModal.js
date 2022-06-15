@@ -1,16 +1,45 @@
 import styled from "styled-components";
 import { Color } from "./constants";
 
-export const RoomInformationModal = ({ room }) => {
+export const RoomInformationModal = ({ room, setRoomModal }) => {
+    let currentReservation = GetCurrentReservation(room);
+    let bodyText = currentReservation ? currentReservation.department + "\n" + currentReservation.description : "Salen är ledig just nu";
+    console.log(currentReservation);
     return (
-        <ModalBackground>
+        <ModalBackground onClick={() => setRoomModal(null)}>
             <ModalBackplate>
-                <ModalHeader>Kollegiesalen</ModalHeader>
-                <ModalBody>Den här salen är bokad för ett viktigt möte</ModalBody>
+                <ModalHeader>{room.name}</ModalHeader>
+                <ModalBody>
+                    <p>
+                        {currentReservation ? currentReservation.department ?? "" : "Salen är ledig just nu"}
+                    </p>
+                    <p>
+                        {currentReservation ? currentReservation.description ?? "" : ""}
+                    </p>
+                </ModalBody>
             </ModalBackplate>
         </ModalBackground>
     );
 };
+
+function GetCurrentReservation(room) {
+    var currentDate = new Date();
+    for (let i = 0; i < room.reservedTimes.length; i++) {
+        try {
+            if (
+                currentDate > new Date(room.reservedTimes[i].start) &&
+                currentDate < new Date(room.reservedTimes[i].end)
+            ) {
+                return room.reservedTimes[i];
+            }
+        } catch (error) {
+            console.log(
+                "Error when finding current reservation " + room.name + " " + error
+            );
+        }
+    }
+    return null;
+}
 
 const ModalHeader = styled.div`
 font-size: 1.2em;

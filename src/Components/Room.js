@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { Color } from "./constants";
 
-export const Room = ({ room }) => {
+export const Room = ({ room, setRoomModal }) => {
   const clockArm = GetCurrentClockArmPosition();
   room.isAvailable = GetRoomIsAvailable(room);
   return (
-    <RoomBackground style={{ opacity: room.isAvailable ? 1 : 0.35 }}>
+    <RoomBackground style={{ opacity: room.isAvailable ? 1 : 0.35 }} onClick={() => RoomClicked(room, setRoomModal)}>
       {room.name.split(" ")[0]}
       <ReservationGreenBar>
         {clockArm.visible ? (
@@ -40,6 +40,10 @@ export const Room = ({ room }) => {
     </RoomBackground>
   );
 };
+
+const RoomClicked = (room, setRoomModal) => {
+  setRoomModal(room);
+}
 
 const RedSpans = ({ room }) => {
   if (room.reservedTimes.length > 0) {
