@@ -9,17 +9,22 @@ import LoadingSpin from "react-loading-spin";
 import { LoadingScreen } from "./Components/LoadingScreen";
 import { RoomInformationModal } from "./Components/RoomInformationModal";
 import { BuildingContainer } from "./Components/BuildingContainer";
+import { DayOffsetPicker } from "./Components/DayOffsetPicker";
 
 function App() {
   const [roomModal, setRoomModal] = useState(undefined);
+  const [dayOffset, setDayOffset] = useState(0);
   const [apiResponse, setApiResponse] = useState([]);
   useEffect(() => {
-    fetch("https://room-reservation-api.herokuapp.com/schedule/get?dayOffset=0")
+    fetch(
+      "https://room-reservation-api.herokuapp.com/schedule/get?dayOffset=" +
+        dayOffset
+    )
       .then((response) => response.json())
       .then((responseData) => {
         setApiResponse(responseData);
       });
-  }, []);
+  }, [dayOffset]);
 
   return (
     <div className="App">
@@ -27,7 +32,7 @@ function App() {
         <meta charSet="utf-8" />
         <title>Lediga Salar KTH</title>
       </Helmet>
-      <header style={{ backgroundColor: "#111922" }} className="App-header">
+      <header className="App-header">
         {roomModal ? (
           <RoomInformationModal
             room={roomModal}
@@ -36,10 +41,16 @@ function App() {
           ></RoomInformationModal>
         ) : null}
         {apiResponse.buildings ? (
-          <BuildingContainer
-            buildings={apiResponse.buildings}
-            setRoomModal={setRoomModal}
-          />
+          <div>
+            <DayOffsetPicker
+              dayOffset={dayOffset}
+              setDayOffset={setDayOffset}
+            ></DayOffsetPicker>
+            <BuildingContainer
+              buildings={apiResponse.buildings}
+              setRoomModal={setRoomModal}
+            />
+          </div>
         ) : (
           <LoadingScreen />
         )}
