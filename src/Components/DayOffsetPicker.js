@@ -12,7 +12,12 @@ export const DayOffsetPicker = ({ dayOffset, setDayOffset }) => {
         >
           <ChangeDayButtonText>-</ChangeDayButtonText>
         </ChangeDayButton>
-        <DayOffsetText>{GetDayNameByOffset(dayOffset)}</DayOffsetText>
+        <DayOffsetTextContainer>
+          <DayOffsetText>{GetDayNameByOffset(dayOffset)}</DayOffsetText>
+          <DayOffsetSubtext>
+            {dayOffset === 0 ? "" : GetDateTextByOffset(dayOffset)}
+          </DayOffsetSubtext>
+        </DayOffsetTextContainer>
         <ChangeDayButton
           onClick={() => {
             setDayOffset(dayOffset + 1);
@@ -24,6 +29,16 @@ export const DayOffsetPicker = ({ dayOffset, setDayOffset }) => {
     </DayOffsetPickerContainer>
   );
 };
+
+const DayOffsetTextContainer = styled.div`
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+`;
+
+const DayOffsetSubtext = styled.div`
+  font-size: 16px;
+`;
 
 const DayOffsetPickerContainer = styled.div`
   display: flex;
@@ -56,16 +71,29 @@ const ChangeDayButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 2px 2px 5px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
   cursor: pointer;
 `;
 
 const DayOffsetText = styled.div`
   font-size: 18px;
   margin-bottom: 0.3em;
+  font-weight: 600;
 `;
 
-export function GetDayNameByOffset(dayOffsetValue) {
+export function GetDateTextByOffset(dayOffsetValue) {
+  let date = new Date();
+  date = addDays(date, dayOffsetValue);
+  let dayNumber = date.getDate();
+
+  if (dayNumber <= 2) return dayNumber + ":a";
+  if (dayNumber.toString().endsWith("1")) {
+    return dayNumber + (dayNumber.toString()[0] === "1" ? ":e" : ":a");
+  }
+  return dayNumber + ":e";
+}
+
+export function GetDayNameByOffset(dayOffsetValue, addPrefix = false) {
   if (dayOffsetValue === 0) return "Idag";
   if (dayOffsetValue === 1) return "Imorgon";
   if (dayOffsetValue === -1) return "Igår";
@@ -83,7 +111,24 @@ export function GetDayNameByOffset(dayOffsetValue) {
     "Lördag",
   ];
 
-  return dayArray[realDate.getDay()];
+  let result = dayArray[realDate.getDay()];
+
+  if (!addPrefix) return result;
+
+  if (Math.abs(dayOffsetValue) < 7) {
+    if (dayOffsetValue < 0) {
+      return "i " + result + "s";
+    }
+
+    return "på " + result;
+  } else {
+    return (
+      (dayOffsetValue > 0 ? "på " : "för ") +
+      result +
+      " den " +
+      GetDateTextByOffset(dayOffsetValue)
+    );
+  }
 }
 
 function addDays(date, days) {

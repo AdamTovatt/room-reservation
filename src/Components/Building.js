@@ -17,7 +17,8 @@ export const Building = ({ building, setRoomModal }) => {
 };
 
 const BuildingDiv = styled.div`
-  margin-top: 1em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 `;
 
 const BuildingNameContainer = styled.div`

@@ -10,6 +10,7 @@ import { LoadingScreen } from "./Components/LoadingScreen";
 import { RoomInformationModal } from "./Components/RoomInformationModal";
 import { BuildingContainer } from "./Components/BuildingContainer";
 import { DayOffsetPicker } from "./Components/DayOffsetPicker";
+import { BuildingInformationHeader } from "./Components/BuildingInformationHeader";
 
 function App() {
   const [roomModal, setRoomModal] = useState(undefined);
@@ -22,6 +23,7 @@ function App() {
     )
       .then((response) => response.json())
       .then((responseData) => {
+        console.log(responseData);
         setApiResponse(responseData);
       });
   }, [dayOffset]);
@@ -46,6 +48,7 @@ function App() {
               dayOffset={dayOffset}
               setDayOffset={setDayOffset}
             ></DayOffsetPicker>
+            <BuildingInformationHeader dayOffset={apiResponse.dayOffset} />
             <BuildingContainer
               buildings={apiResponse.buildings}
               setRoomModal={setRoomModal}
