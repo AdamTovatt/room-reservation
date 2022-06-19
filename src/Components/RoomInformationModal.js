@@ -82,7 +82,7 @@ function GetCurrentReservation(room) {
 }
 
 const ModalSubheader = styled.div`
-  font-size: 0.6em;
+  font-size: 0.8em;
   padding: 0em;
 `;
 
@@ -93,13 +93,13 @@ const ModalHeader = styled.div`
 
 const ModalBody = styled.div`
   padding: 0.5em 2em 2em 2em;
-  font-size: 0.7em;
+  font-size: 0.8em;
   text-align: left;
 `;
 
 const ModalBodyTextLine = styled.p`
   padding: 0em;
-  margin: 0em;
+  margin: 0.2em 0em 0.2em 0em;
 `;
 
 const ModalBackplate = styled.div`

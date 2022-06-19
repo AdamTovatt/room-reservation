@@ -8,6 +8,7 @@ import { Helmet } from "react-helmet";
 import LoadingSpin from "react-loading-spin";
 import { LoadingScreen } from "./Components/LoadingScreen";
 import { RoomInformationModal } from "./Components/RoomInformationModal";
+import { BuildingContainer } from "./Components/BuildingContainer";
 
 function App() {
   const [roomModal, setRoomModal] = useState(undefined);
@@ -35,12 +36,10 @@ function App() {
           ></RoomInformationModal>
         ) : null}
         {apiResponse.buildings ? (
-          apiResponse.buildings.map((building) => (
-            <Building
-              building={building}
-              setRoomModal={setRoomModal}
-            ></Building>
-          ))
+          <BuildingContainer
+            buildings={apiResponse.buildings}
+            setRoomModal={setRoomModal}
+          />
         ) : (
           <LoadingScreen />
         )}

@@ -3,33 +3,33 @@ import { Room } from "./Room";
 
 export const Building = ({ building, setRoomModal }) => {
   return (
-    <BuildingContainer>
+    <BuildingDiv>
       <BuildingNameContainer>
         <BuildingName>{building.name}:</BuildingName>
       </BuildingNameContainer>
-      {building.rooms.map((room) => (
-        <Room room={room} setRoomModal={setRoomModal}></Room>
-      ))}
-    </BuildingContainer>
+      <RoomContainer>
+        {building.rooms.map((room) => (
+          <Room room={room} setRoomModal={setRoomModal}></Room>
+        ))}
+      </RoomContainer>
+    </BuildingDiv>
   );
 };
 
+const BuildingDiv = styled.div`
+  margin-top: 1em;
+`;
+
 const BuildingNameContainer = styled.div`
-  width: 100%;
   display: flex;
 `;
 
 const BuildingName = styled.div`
-  padding-left: 1rem;
+  padding-left: 0.3em;
 `;
 
-const BuildingContainer = styled.div`
-  width: 100%;
-  height: 100%;
+const RoomContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-top: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
 `;
