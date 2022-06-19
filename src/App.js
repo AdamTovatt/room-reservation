@@ -27,10 +27,19 @@ function App() {
         <title>Lediga Salar KTH</title>
       </Helmet>
       <header style={{ backgroundColor: "#111922" }} className="App-header">
-        {roomModal ? <RoomInformationModal room={roomModal} setRoomModal={setRoomModal} style={{ display: "none" }}></RoomInformationModal> : null}
+        {roomModal ? (
+          <RoomInformationModal
+            room={roomModal}
+            setRoomModal={setRoomModal}
+            style={{ display: "none" }}
+          ></RoomInformationModal>
+        ) : null}
         {apiResponse.buildings ? (
           apiResponse.buildings.map((building) => (
-            <Building building={building} setRoomModal={setRoomModal} ></Building>
+            <Building
+              building={building}
+              setRoomModal={setRoomModal}
+            ></Building>
           ))
         ) : (
           <LoadingScreen />

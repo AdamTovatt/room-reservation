@@ -5,7 +5,10 @@ export const Room = ({ room, setRoomModal }) => {
   const clockArm = GetCurrentClockArmPosition();
   room.isAvailable = GetRoomIsAvailable(room);
   return (
-    <RoomBackground style={{ opacity: room.isAvailable ? 1 : 0.35 }} onClick={() => RoomClicked(room, setRoomModal)}>
+    <RoomBackground
+      style={{ opacity: room.isAvailable ? 1 : 0.35 }}
+      onClick={() => RoomClicked(room, setRoomModal)}
+    >
       {room.name.split(" ")[0]}
       <ReservationGreenBar>
         {clockArm.visible ? (
@@ -43,7 +46,7 @@ export const Room = ({ room, setRoomModal }) => {
 
 const RoomClicked = (room, setRoomModal) => {
   setRoomModal(room);
-}
+};
 
 const RedSpans = ({ room }) => {
   if (room.reservedTimes.length > 0) {
@@ -143,7 +146,7 @@ const RoomBackground = styled.div`
   position: relative;
   font-size: 1rem;
   margin: 0.4rem;
-  box-shadow: 2px 2px 5px 3px rgba(0,0,0,0.2);
+  box-shadow: 2px 2px 5px 3px rgba(0, 0, 0, 0.2);
 `;
 
 const CenterContentContainer = styled.div`
