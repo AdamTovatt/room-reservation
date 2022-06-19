@@ -9,7 +9,7 @@ export const Room = ({ room, setRoomModal }) => {
       style={{ opacity: room.isAvailable ? 1 : 0.35 }}
       onClick={() => RoomClicked(room, setRoomModal)}
     >
-      {room.name.split(" ")[0]}
+      <RoomHeader>{room.name.split(" ")[0]}</RoomHeader>
       <ReservationGreenBar>
         {clockArm.visible ? (
           <ClockArm style={{ left: clockArm.position + "px" }}></ClockArm>
@@ -137,6 +137,10 @@ function TimeToPixels(startTime, endTime) {
 
   return { left, width, leftBorder, rightBorder };
 }
+
+const RoomHeader = styled.div`
+  margin-top: 0.1em;
+`;
 
 const RoomBackground = styled.div`
   width: 110px;

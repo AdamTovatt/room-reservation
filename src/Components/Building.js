@@ -25,7 +25,7 @@ const BuildingNameContainer = styled.div`
 `;
 
 const BuildingName = styled.div`
-  padding-left: 0.3em;
+  padding-left: 0.4em;
 `;
 
 const RoomContainer = styled.div`
