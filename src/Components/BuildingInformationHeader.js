@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import { Room } from "./Room";
 import { Building } from "./Building";
+import { Color } from "./constants";
 import { GetDayNameByOffset } from "./DayOffsetPicker";
 
-export const BuildingInformationHeader = ({ dayOffset, setInformationHeaderVisible }) => {
+export const BuildingInformationHeader = ({ dayOffset, setInformationHeaderVisible, informationHeaderVisible }) => {
   return (
     <HeaderContainer>
       <InformationHeader>
@@ -15,16 +16,20 @@ export const BuildingInformationHeader = ({ dayOffset, setInformationHeaderVisib
             .replace(/(.*)\D\d+/, "$1")
           : ""}
       </InformationHeader>
-      <SetVisibleButton></SetVisibleButton>
+      <SetVisibleButton onClick={() => { setInformationHeaderVisible(!informationHeaderVisible); }}>i</SetVisibleButton>
     </HeaderContainer>
   );
 };
 
 const SetVisibleButton = styled.div`
-  width: 1em;
-  height: 1em;
-  background-color: red;
-  margin-top: 0.2em;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 5px;
+  background-color: ${Color.Blue};
+  margin-top: 0.05em;
+  margin-left: 1em;
+  box-shadow: 2px 2px 5px 3px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 `
 
 const HeaderContainer = styled.div`

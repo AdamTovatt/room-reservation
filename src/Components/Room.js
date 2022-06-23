@@ -151,6 +151,7 @@ const RoomBackground = styled.div`
   font-size: 1rem;
   margin: 0.4rem;
   box-shadow: 2px 2px 5px 3px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 `;
 
 const CenterContentContainer = styled.div`

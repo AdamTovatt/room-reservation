@@ -16,10 +16,12 @@ function App() {
   const [roomModal, setRoomModal] = useState(undefined);
   const [dayOffset, setDayOffset] = useState(0);
   const [apiResponse, setApiResponse] = useState([]);
+  const [informationHeaderVisible, setInformationHeaderVisible] = useState(false);
+
   useEffect(() => {
     fetch(
       "https://room-reservation-api.herokuapp.com/schedule/get?dayOffset=" +
-        dayOffset
+      dayOffset
     )
       .then((response) => response.json())
       .then((responseData) => {
@@ -44,11 +46,11 @@ function App() {
         ) : null}
         {apiResponse.buildings ? (
           <div>
-            <DayOffsetPicker
+            { informationHeaderVisible ? (<DayOffsetPicker
               dayOffset={dayOffset}
               setDayOffset={setDayOffset}
-            ></DayOffsetPicker>
-            <BuildingInformationHeader dayOffset={apiResponse.dayOffset} />
+            ></DayOffsetPicker>) : "" }
+            <BuildingInformationHeader dayOffset={apiResponse.dayOffset} setInformationHeaderVisible={setInformationHeaderVisible} informationHeaderVisible={informationHeaderVisible} />
             <BuildingContainer
               buildings={apiResponse.buildings}
               setRoomModal={setRoomModal}
