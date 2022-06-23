@@ -32,7 +32,6 @@ export const RoomInformationModal = ({ room, setRoomModal }) => {
       : ""
     : "";
 
-  console.log(currentReservation);
   return (
     <ModalBackground onClick={() => setRoomModal(null)}>
       <ModalBackplate>
