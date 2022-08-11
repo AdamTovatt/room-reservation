@@ -44,15 +44,20 @@ const SetVisibleButton = styled.div`
 
 const HeaderContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-content: center;
   margin-top: 1.8em;
   margin-left: 0.4em;
 `;
 
 const InformationHeader = styled.div`
+  color: ${Color.OffWhite};
   padding: 0.1em;
   max-width: 100%;
   overflow: hidden;
-  text-align: center;
+  text-align: left;
+  @media (max-width: 768px) {
+    text-align: center;
+  }
   font-weight: 600;
 `;

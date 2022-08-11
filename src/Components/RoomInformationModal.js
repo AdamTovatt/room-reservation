@@ -34,7 +34,11 @@ export const RoomInformationModal = ({ room, setRoomModal }) => {
 
   return (
     <ModalBackground onClick={() => setRoomModal(null)}>
-      <ModalBackplate>
+      <ModalBackplate
+        style={{
+          borderColor: currentReservation ? Color.Red : Color.Green,
+        }}
+      >
         <ModalHeader>{room.name}</ModalHeader>
         <ModalSubheader>{otherRooms}</ModalSubheader>
         <ModalBody>
@@ -102,12 +106,16 @@ const ModalBodyTextLine = styled.p`
 `;
 
 const ModalBackplate = styled.div`
-  border-radius: 5px;
-  background-color: ${Color.Blue};
+  font-family: "Jost";
+  color: ${Color.OffWhite};
+  background-color: ${Color.Background};
   min-width: 16em;
   position: fixed;
   top: 30%;
   z-index: 5;
+  border: solid;
+  border-width: 2px;
+  border-radius: 12px;
   box-shadow: 3px 3px 6px 3px rgba(0, 0, 0, 0.2);
   opacity: 1;
 `;

@@ -151,13 +151,13 @@ const RoomBackground = styled.div`
   width: 110px;
   height: 54px;
   background-color: "transparent";
+  color: ${Color.OffWhite};
   border: solid;
   border-width: 2px;
   border-radius: 12px;
   position: relative;
   font-size: 1rem;
-  margin: 0.4rem;
-  z-index: 10;
+  margin: 0.3rem;
   box-shadow: 2px 2px 5px 3px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   font-family: Jost;
@@ -202,7 +202,7 @@ const ClockTickContainer = styled.div`
 const ClockTick = styled.div`
   width: 2px;
   height: 4px;
-  background-color: white;
+  background-color: ${Color.OffWhite}; ;
 `;
 
 const ClockNumberContainer = styled.div`
@@ -213,8 +213,7 @@ const ClockNumberContainer = styled.div`
   position: absolute;
   top: -18px;
   left: 5px;
-  color: white;
-  color: rgba(255, 255, 255, 0.9);
+  color: ${Color.OffWhite};
 `;
 
 const ClockNumber = styled.div`
