@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Room } from "./Room";
+import { Color } from "./constants";
 
 export const Building = ({ building, setRoomModal }) => {
   return (
@@ -19,6 +20,7 @@ export const Building = ({ building, setRoomModal }) => {
 const BuildingDiv = styled.div`
   margin-top: 0.5em;
   margin-bottom: 0.5em;
+  max-width: 30em;
 `;
 
 const BuildingNameContainer = styled.div`
@@ -27,6 +29,8 @@ const BuildingNameContainer = styled.div`
 
 const BuildingName = styled.div`
   padding-left: 0.4em;
+  font-family: "Jost";
+  color: ${Color.OffWhite};
 `;
 
 const RoomContainer = styled.div`

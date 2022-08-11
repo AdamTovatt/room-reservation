@@ -34,26 +34,38 @@ export const RoomInformationModal = ({ room, setRoomModal }) => {
 
   return (
     <ModalBackground onClick={() => setRoomModal(null)}>
-      <ModalBackplate>
+      <ModalBackplate
+        style={{
+          borderColor: currentReservation ? Color.Red : Color.Green,
+        }}
+      >
         <ModalHeader>{room.name}</ModalHeader>
         <ModalSubheader>{otherRooms}</ModalSubheader>
         <ModalBody>
           <ModalBodyTextLine>
             <ModalBodyTextLine>
               {currentReservation
-                ? "Beskrivning: " + description
+                ? currentReservation.description
+                  ? "Beskrivning: " + description
+                  : ""
                 : "Salen är ledig just nu"}
             </ModalBodyTextLine>
-            {currentReservation ? "Bokad av: " + department : ""}
+            {currentReservation && currentReservation.department > 0
+              ? "Bokad av: " + department
+              : ""}
           </ModalBodyTextLine>
           <ModalBodyTextLine>
             {currentReservation ? "Reservationstyp: " + reservationType : ""}
           </ModalBodyTextLine>
           <ModalBodyTextLine>
-            {currentReservation ? "Program: " + programme : ""}
+            {currentReservation && currentReservation.programmes.length > 0
+              ? "Program: " + programme
+              : ""}
           </ModalBodyTextLine>
           <ModalBodyTextLine>
-            {currentReservation ? "Personal: " + staff : ""}
+            {currentReservation && currentReservation.staff.length > 0
+              ? "Personal: " + staff
+              : ""}
           </ModalBodyTextLine>
         </ModalBody>
       </ModalBackplate>
@@ -102,12 +114,16 @@ const ModalBodyTextLine = styled.p`
 `;
 
 const ModalBackplate = styled.div`
-  border-radius: 5px;
-  background-color: ${Color.Blue};
+  font-family: "Jost";
+  color: ${Color.OffWhite};
+  background-color: ${Color.Background};
   min-width: 16em;
   position: fixed;
   top: 30%;
   z-index: 5;
+  border: solid;
+  border-width: 2px;
+  border-radius: 12px;
   box-shadow: 3px 3px 6px 3px rgba(0, 0, 0, 0.2);
   opacity: 1;
 `;
