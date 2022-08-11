@@ -11,6 +11,7 @@ import { RoomInformationModal } from "./Components/RoomInformationModal";
 import { BuildingContainer } from "./Components/BuildingContainer";
 import { DayOffsetPicker } from "./Components/DayOffsetPicker";
 import { BuildingInformationHeader } from "./Components/BuildingInformationHeader";
+import { Footer } from "./Components/Footer";
 
 function App() {
   const [roomModal, setRoomModal] = useState(undefined);
@@ -64,6 +65,7 @@ function App() {
               buildings={apiResponse.buildings}
               setRoomModal={setRoomModal}
             />
+            <Footer />
           </div>
         ) : (
           <LoadingScreen />
