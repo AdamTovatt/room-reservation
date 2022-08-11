@@ -6,7 +6,10 @@ export const Room = ({ room, setRoomModal }) => {
   room.isAvailable = GetRoomIsAvailable(room);
   return (
     <RoomBackground
-      style={{ opacity: room.isAvailable ? 1 : 0.35 }}
+      style={{
+        opacity: room.isAvailable ? 1 : 0.35,
+        borderColor: room.isAvailable ? Color.Green : Color.Red,
+      }}
       onClick={() => RoomClicked(room, setRoomModal)}
     >
       <RoomHeader>{room.name.split(" ")[0]}</RoomHeader>
@@ -140,18 +143,29 @@ function TimeToPixels(startTime, endTime) {
 
 const RoomHeader = styled.div`
   margin-top: 0.1em;
+  font-family: Jost;
+  font-weight: 450;
 `;
 
 const RoomBackground = styled.div`
   width: 110px;
   height: 54px;
-  background-color: ${Color.Blue};
-  border-radius: 5px;
+  background-color: "transparent";
+  border: solid;
+  border-width: 2px;
+  border-radius: 12px;
   position: relative;
   font-size: 1rem;
   margin: 0.4rem;
+  z-index: 10;
   box-shadow: 2px 2px 5px 3px rgba(0, 0, 0, 0.2);
   cursor: pointer;
+  font-family: Jost;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 23px;
+  letter-spacing: 0em;
+  text-align: center;
 `;
 
 const CenterContentContainer = styled.div`
@@ -164,7 +178,7 @@ const ReservationRedBar = styled.div`
   width: 0px;
   height: 15px;
   background-color: ${Color.Red};
-  border-radius: 0px 0px 5px 5px;
+  border-radius: 0px 0px 10px 10px;
   bottom: 0px;
   position: absolute;
 `;
@@ -173,7 +187,7 @@ const ReservationGreenBar = styled.div`
   width: 100%;
   height: 15px;
   background-color: ${Color.Green};
-  border-radius: 0px 0px 5px 5px;
+  border-radius: 0px 0px 10px 10px;
   bottom: 0px;
   position: absolute;
 `;
@@ -197,7 +211,7 @@ const ClockNumberContainer = styled.div`
   display: flex;
   z-index: 2;
   position: absolute;
-  top: -14px;
+  top: -18px;
   left: 5px;
   color: white;
   color: rgba(255, 255, 255, 0.9);

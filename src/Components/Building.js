@@ -27,6 +27,7 @@ const BuildingNameContainer = styled.div`
 
 const BuildingName = styled.div`
   padding-left: 0.4em;
+  font-family: "Jost";
 `;
 
 const RoomContainer = styled.div`
