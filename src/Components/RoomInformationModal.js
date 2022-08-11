@@ -45,19 +45,27 @@ export const RoomInformationModal = ({ room, setRoomModal }) => {
           <ModalBodyTextLine>
             <ModalBodyTextLine>
               {currentReservation
-                ? "Beskrivning: " + description
+                ? currentReservation.description
+                  ? "Beskrivning: " + description
+                  : ""
                 : "Salen är ledig just nu"}
             </ModalBodyTextLine>
-            {currentReservation ? "Bokad av: " + department : ""}
+            {currentReservation && currentReservation.department > 0
+              ? "Bokad av: " + department
+              : ""}
           </ModalBodyTextLine>
           <ModalBodyTextLine>
             {currentReservation ? "Reservationstyp: " + reservationType : ""}
           </ModalBodyTextLine>
           <ModalBodyTextLine>
-            {currentReservation ? "Program: " + programme : ""}
+            {currentReservation && currentReservation.programmes.length > 0
+              ? "Program: " + programme
+              : ""}
           </ModalBodyTextLine>
           <ModalBodyTextLine>
-            {currentReservation ? "Personal: " + staff : ""}
+            {currentReservation && currentReservation.staff.length > 0
+              ? "Personal: " + staff
+              : ""}
           </ModalBodyTextLine>
         </ModalBody>
       </ModalBackplate>
