@@ -134,7 +134,7 @@ function TimeToPixels(startTime, endTime) {
   const left = (start - 7) * 10;
   const width = (end - start) * 10;
 
-  const borderRadius = 5; //default border radius
+  const borderRadius = 10; //default border radius
   const leftBorder = start > 7 ? 0 : borderRadius;
   const rightBorder = end < 18 ? 0 : borderRadius;
 
