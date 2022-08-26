@@ -21,10 +21,7 @@ function App() {
     useState(false);
 
   useEffect(() => {
-    fetch(
-      "https://room-reservation-api.herokuapp.com/schedule/get?dayOffset=" +
-        dayOffset
-    )
+    fetch("https://ledigasalar.online/schedule/get?dayOffset=" + dayOffset)
       .then((response) => response.json())
       .then((responseData) => {
         console.log(responseData);
