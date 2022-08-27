@@ -34,7 +34,7 @@ const BuildingDiv = styled.div`
   @media (max-width: 500px) {
     max-width: 23.2rem;
   }
-  @media (max-width: 375px) {
+  @media (max-width: 374px) {
     max-width: 15.5rem;
   }
   @media (max-width: 250px) {
