@@ -1,6 +1,6 @@
 # Kth Lediga Salar
 
-This repository is the code for the website available at: https://tentap.online/
+This repository is the code for the website available at: https://kthsalar.se/
 
 ## Purpose
 
