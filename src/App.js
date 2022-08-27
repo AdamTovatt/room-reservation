@@ -20,14 +20,21 @@ function App() {
   const [informationHeaderVisible, setInformationHeaderVisible] =
     useState(false);
 
+  let requestPath = "https://ledigasalar.online/schedule/get?dayOffset=";
+
+  if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
+    //use local api if development
+    requestPath = "http://localhost:5000/schedule/get?dayOffset=";
+  }
+
   useEffect(() => {
-    fetch("https://ledigasalar.online/schedule/get?dayOffset=" + dayOffset)
+    fetch(requestPath + dayOffset)
       .then((response) => response.json())
       .then((responseData) => {
         console.log(responseData);
         setApiResponse(responseData);
       });
-  }, [dayOffset]);
+  }, [dayOffset, requestPath]);
 
   return (
     <div className="App">
