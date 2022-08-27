@@ -55,6 +55,13 @@ export const RoomInformationModal = ({ room, setRoomModal }) => {
                 : ""
               : "Salen är ledig just nu"}
           </ModalBodyTextLine>
+          {/*           <ModalBodyTextDisclaimer style={{ textAlign: headerAlignment }}>
+            {currentReservation
+              ? currentReservation.description
+                ? ""
+                : ""
+              : "Salen kanske ändå är låst"}
+          </ModalBodyTextDisclaimer> */}
           {currentReservation && currentReservation.department > 0
             ? "Bokad av: " + department
             : ""}
@@ -107,15 +114,23 @@ const ModalHeader = styled.div`
 `;
 
 const ModalBody = styled.div`
-  padding: 0.5em 2em 2em 2em;
+  padding: 0.5em 2em 1.85em 2em;
   font-size: 0.8em;
   text-align: left;
 `;
 
 const ModalBodyTextLine = styled.p`
   padding: 0em;
-  margin: 0.2em 0em 0.2em 0em;
+  margin: 0.2em 0em 0em 0em;
 `;
+
+/* const ModalBodyTextDisclaimer = styled.p`
+  padding: 0em;
+  margin: 0.2em 0em 0.2em 0em;
+  opacity: 50%;
+  font-style: italic;
+  font-size: 0.8em;
+`; */
 
 const ModalBackplate = styled.div`
   font-family: "Jost";
