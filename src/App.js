@@ -20,11 +20,13 @@ function App() {
   const [informationHeaderVisible, setInformationHeaderVisible] =
     useState(false);
 
-  let requestPath = "https://ledigasalar.online/schedule/get?dayOffset=";
+  let requestPath =
+    "https://ledigasalar.online/room-reservation/schedule/get?dayOffset=";
 
   if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
     //use local api if development
-    requestPath = "http://localhost:5000/schedule/get?dayOffset=";
+    requestPath =
+      "http://localhost:5000/room-reservation/schedule/get?dayOffset=";
   }
 
   useEffect(() => {
