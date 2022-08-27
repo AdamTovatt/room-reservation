@@ -21,6 +21,25 @@ const BuildingDiv = styled.div`
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   max-width: 30em;
+
+  @media (max-width: 900px) {
+    max-width: 46.5rem;
+  }
+  @media (max-width: 748px) {
+    max-width: 38.8rem;
+  }
+  @media (max-width: 624px) {
+    max-width: 31rem;
+  }
+  @media (max-width: 500px) {
+    max-width: 23.2rem;
+  }
+  @media (max-width: 375px) {
+    max-width: 15.5rem;
+  }
+  @media (max-width: 250px) {
+    max-width: 8rem;
+  }
 `;
 
 const BuildingNameContainer = styled.div`
