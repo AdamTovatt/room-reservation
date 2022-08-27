@@ -32,6 +32,12 @@ export const RoomInformationModal = ({ room, setRoomModal }) => {
       : ""
     : "";
 
+  const headerAlignment = currentReservation
+    ? currentReservation.description
+      ? "unset"
+      : "unset"
+    : "center";
+
   return (
     <ModalBackground onClick={() => setRoomModal(null)}>
       <ModalBackplate
@@ -42,18 +48,16 @@ export const RoomInformationModal = ({ room, setRoomModal }) => {
         <ModalHeader>{room.name}</ModalHeader>
         <ModalSubheader>{otherRooms}</ModalSubheader>
         <ModalBody>
-          <ModalBodyTextLine>
-            <ModalBodyTextLine>
-              {currentReservation
-                ? currentReservation.description
-                  ? "Beskrivning: " + description
-                  : ""
-                : "Salen är ledig just nu"}
-            </ModalBodyTextLine>
-            {currentReservation && currentReservation.department > 0
-              ? "Bokad av: " + department
-              : ""}
+          <ModalBodyTextLine style={{ textAlign: headerAlignment }}>
+            {currentReservation
+              ? currentReservation.description
+                ? "Beskrivning: " + description
+                : ""
+              : "Salen är ledig just nu"}
           </ModalBodyTextLine>
+          {currentReservation && currentReservation.department > 0
+            ? "Bokad av: " + department
+            : ""}
           <ModalBodyTextLine>
             {currentReservation ? "Reservationstyp: " + reservationType : ""}
           </ModalBodyTextLine>
