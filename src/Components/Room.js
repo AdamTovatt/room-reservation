@@ -166,14 +166,6 @@ const RoomBackground = styled.div`
   line-height: 23px;
   letter-spacing: 0em;
   text-align: center;
-
-  &:hover {
-    -webkit-transform: scale(1.05);
-    -moz-transform: scale(1.05);
-    -o-transform: scale(1.05);
-    transform: scale(1.05);
-    transition-duration: 0.1s;
-  }
 `;
 
 const CenterContentContainer = styled.div`
