@@ -38,6 +38,14 @@ export const RoomInformationModal = ({ room, setRoomModal }) => {
       : "unset"
     : "center";
 
+  const roomAvailable = currentReservation
+    ? currentReservation.description
+      ? false
+      : false
+    : true;
+
+  const roomLink = "https://www.kth.se/places/room/id/" + room.externalId;
+
   return (
     <ModalBackground onClick={() => setRoomModal(null)}>
       <ModalBackplate
@@ -78,6 +86,17 @@ export const RoomInformationModal = ({ room, setRoomModal }) => {
               ? "Personal: " + staff
               : ""}
           </ModalBodyTextLine>
+          <ModalBodyLocateButtonContainer>
+            <Link href={roomLink}>
+              <LocateButton
+                style={{
+                  borderColor: roomAvailable ? Color.Green : Color.Red,
+                }}
+              >
+                Hitta hit
+              </LocateButton>
+            </Link>
+          </ModalBodyLocateButtonContainer>
         </ModalBody>
       </ModalBackplate>
     </ModalBackground>
@@ -103,6 +122,12 @@ function GetCurrentReservation(room) {
   return null;
 }
 
+const Link = styled.a`
+  color: inherit;
+  text-decoration: none;
+  width: 100%;
+`;
+
 const ModalSubheader = styled.div`
   font-size: 0.8em;
   padding: 0em;
@@ -117,6 +142,42 @@ const ModalBody = styled.div`
   padding: 0.5em 2em 1.85em 2em;
   font-size: 0.8em;
   text-align: left;
+`;
+
+const ModalBodyLocateButtonContainer = styled.p`
+  margin: 1em 0em 0em 0em;
+  display: flex;
+  justify-content: center;
+`;
+
+const LocateButton = styled.button`
+  width: 100%;
+  height: 54px;
+  background-color: transparent;
+  color: ${Color.OffWhite};
+  border: solid;
+  border-color: ${Color.Green};
+  border-width: 2px;
+  border-radius: 12px;
+  position: relative;
+  font-size: 1rem;
+  margin: 0.3rem;
+  //box-shadow: 2px 2px 5px 3px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  font-family: Jost;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 23px;
+  letter-spacing: 0em;
+  text-align: center;
+
+  &:hover {
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -o-transform: scale(1.05);
+    transform: scale(1.05);
+    transition-duration: 0.1s;
+  }
 `;
 
 const ModalBodyTextLine = styled.p`

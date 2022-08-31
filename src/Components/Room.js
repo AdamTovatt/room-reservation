@@ -150,7 +150,7 @@ const RoomHeader = styled.div`
 const RoomBackground = styled.div`
   width: 110px;
   height: 54px;
-  background-color: "transparent";
+  background-color: transparent;
   color: ${Color.OffWhite};
   border: solid;
   border-width: 2px;
@@ -166,6 +166,14 @@ const RoomBackground = styled.div`
   line-height: 23px;
   letter-spacing: 0em;
   text-align: center;
+
+  &:hover {
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -o-transform: scale(1.05);
+    transform: scale(1.05);
+    transition-duration: 0.1s;
+  }
 `;
 
 const CenterContentContainer = styled.div`
