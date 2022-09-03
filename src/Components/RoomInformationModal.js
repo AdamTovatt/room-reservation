@@ -206,7 +206,7 @@ const ModalBodyTextDisclaimer = styled.p`
   padding: 0em;
   margin: 0.2em 0em 0.2em 0em;
   font-style: italic;
-  font-size: 0.8em;
+  font-size: 1.1em;
   color: ${Color.Red};
 `;
 
