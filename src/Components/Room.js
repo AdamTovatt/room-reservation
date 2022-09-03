@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Lock } from "./Lock";
 import { Color } from "./constants";
 
 export const Room = ({ room, setRoomModal }) => {
@@ -12,6 +13,7 @@ export const Room = ({ room, setRoomModal }) => {
       }}
       onClick={() => RoomClicked(room, setRoomModal)}
     >
+      <LockIcon></LockIcon>
       <RoomHeader>{room.name.split(" ")[0]}</RoomHeader>
       <ReservationGreenBar>
         {clockArm.visible ? (
@@ -46,6 +48,10 @@ export const Room = ({ room, setRoomModal }) => {
     </RoomBackground>
   );
 };
+
+const LockIcon = () => {
+  return (<Lock width={22}></Lock>)
+}
 
 const RoomClicked = (room, setRoomModal) => {
   setRoomModal(room);
