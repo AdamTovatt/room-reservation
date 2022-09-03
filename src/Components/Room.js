@@ -5,15 +5,20 @@ import { Color } from "./constants";
 export const Room = ({ room, setRoomModal }) => {
   const clockArm = GetCurrentClockArmPosition();
   room.isAvailable = GetRoomIsAvailable(room);
+
+  const roomColor = room.isAvailable ? Color.Green : Color.Red;
+
   return (
     <RoomBackground
       style={{
-        opacity: room.isAvailable ? 1 : 0.35,
-        borderColor: room.isAvailable ? Color.Green : Color.Red,
+        opacity: room.isAvailable && !room.requiresAccess ? 1 : 0.35,
+        borderColor: roomColor,
       }}
       onClick={() => RoomClicked(room, setRoomModal)}
     >
-      <LockIcon></LockIcon>
+      {room.requiresAccess ? (
+        <LockIcon size={"22"} color={Color.OffWhite} />
+      ) : null}
       <RoomHeader>{room.name.split(" ")[0]}</RoomHeader>
       <ReservationGreenBar>
         {clockArm.visible ? (
@@ -49,9 +54,19 @@ export const Room = ({ room, setRoomModal }) => {
   );
 };
 
-const LockIcon = () => {
-  return (<Lock width={22}></Lock>)
-}
+const LockIcon = ({ color, size }) => {
+  return (
+    <LockContainer>
+      <Lock size={size} color={color} style={{ position: "absolute" }}></Lock>
+    </LockContainer>
+  );
+};
+
+const LockContainer = styled.div`
+  position: absolute;
+  right: 1px;
+  top: 3px;
+`;
 
 const RoomClicked = (room, setRoomModal) => {
   setRoomModal(room);

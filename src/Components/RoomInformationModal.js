@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Color } from "./constants";
+import { Lock } from "./Lock";
 
 export const RoomInformationModal = ({ room, setRoomModal }) => {
   let currentReservation = GetCurrentReservation(room);
@@ -53,6 +54,9 @@ export const RoomInformationModal = ({ room, setRoomModal }) => {
           borderColor: currentReservation ? Color.Red : Color.Green,
         }}
       >
+        {room.requiresAccess ? (
+          <LockIcon size={"42"} color={Color.OffWhite} />
+        ) : null}
         <ModalHeader>{room.name}</ModalHeader>
         <ModalSubheader>{otherRooms}</ModalSubheader>
         <ModalBody>
@@ -63,13 +67,11 @@ export const RoomInformationModal = ({ room, setRoomModal }) => {
                 : ""
               : "Salen är ledig just nu"}
           </ModalBodyTextLine>
-          {/*           <ModalBodyTextDisclaimer style={{ textAlign: headerAlignment }}>
-            {currentReservation
-              ? currentReservation.description
-                ? ""
-                : ""
-              : "Salen kanske ändå är låst"}
-          </ModalBodyTextDisclaimer> */}
+          {room.requiresAccess ? (
+            <ModalBodyTextDisclaimer style={{ textAlign: headerAlignment }}>
+              Obs! Salen kräver speciellt tillträde
+            </ModalBodyTextDisclaimer>
+          ) : null}
           {currentReservation && currentReservation.department > 0
             ? "Bokad av: " + department
             : ""}
@@ -121,6 +123,21 @@ function GetCurrentReservation(room) {
   }
   return null;
 }
+
+const LockIcon = ({ color, size }) => {
+  return (
+    <LockContainer>
+      <Lock size={size} color={color} style={{ position: "absolute" }}></Lock>
+    </LockContainer>
+  );
+};
+
+const LockContainer = styled.div`
+  position: absolute;
+  right: 0;
+  margin-top: 1rem;
+  margin-right: 1rem;
+`;
 
 const Link = styled.a`
   color: inherit;
@@ -185,13 +202,13 @@ const ModalBodyTextLine = styled.p`
   margin: 0.2em 0em 0em 0em;
 `;
 
-/* const ModalBodyTextDisclaimer = styled.p`
+const ModalBodyTextDisclaimer = styled.p`
   padding: 0em;
   margin: 0.2em 0em 0.2em 0em;
-  opacity: 50%;
   font-style: italic;
   font-size: 0.8em;
-`; */
+  color: ${Color.Red};
+`;
 
 const ModalBackplate = styled.div`
   font-family: "Jost";
