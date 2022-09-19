@@ -1,0 +1,5 @@
+[[redirects]]
+from = "https://tentap.online/*"
+to = "https://kthsalar.se/"
+status = 302
+force = true
