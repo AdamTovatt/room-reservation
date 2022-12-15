@@ -19,14 +19,6 @@ export const RoomInformationModal = ({ room, setRoomModal }) => {
       ? currentReservation.programmes[0]
       : "(saknas)"
     : "";
-  let staff = currentReservation
-    ? currentReservation.staff.length > 0
-      ? currentReservation.staff[0] +
-        (currentReservation.staff.length > 1
-          ? " (+" + currentReservation.staff.length + ")"
-          : "")
-      : "(saknas)"
-    : "";
   let otherRooms = currentReservation
     ? currentReservation.occupiedRooms > 1
       ? "(och " + currentReservation.occupiedRooms + " andra salar)"
@@ -81,11 +73,6 @@ export const RoomInformationModal = ({ room, setRoomModal }) => {
           <ModalBodyTextLine>
             {currentReservation && currentReservation.programmes.length > 0
               ? "Program: " + programme
-              : ""}
-          </ModalBodyTextLine>
-          <ModalBodyTextLine>
-            {currentReservation && currentReservation.staff.length > 0
-              ? "Personal: " + staff
               : ""}
           </ModalBodyTextLine>
           <ModalBodyLocateButtonContainer>
