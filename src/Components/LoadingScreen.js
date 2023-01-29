@@ -4,8 +4,11 @@ import LoadingSpin from "react-loading-spin";
 export const LoadingScreen = () => {
   return (
     <LoadingContainer>
-      <LoadingSpin primaryColor="#456990" secondaryColor="#49BEAA" />
-      <LoadingText>Hämtar salschema...</LoadingText>
+      {/* <LoadingSpin primaryColor="#456990" secondaryColor="#49BEAA" /> */}
+      <LoadingText>
+        Servern för den här hemsidan har tyvärr nyligen trillat av pinn. Jag
+        jobbar på att fixa en ny. Kom tillbaka om någon dag.
+      </LoadingText>
     </LoadingContainer>
   );
 };
