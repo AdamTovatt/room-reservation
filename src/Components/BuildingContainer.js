@@ -5,8 +5,12 @@ import { Building } from "./Building";
 export const BuildingContainer = ({ buildings, setRoomModal }) => {
   return (
     <Container>
-      {buildings.map((building) => (
-        <Building building={building} setRoomModal={setRoomModal}></Building>
+      {buildings.map((building, index) => (
+        <Building
+          key={index}
+          building={building}
+          setRoomModal={setRoomModal}
+        ></Building>
       ))}
     </Container>
   );

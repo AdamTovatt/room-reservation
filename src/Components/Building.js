@@ -9,9 +9,11 @@ export const Building = ({ building, setRoomModal }) => {
         <BuildingName>{building.name}:</BuildingName>
       </BuildingNameContainer>
       <RoomContainer>
-        {building.rooms.map((room) => (
-          <Room room={room} setRoomModal={setRoomModal}></Room>
-        ))}
+        {building.rooms.map((room, index) => {
+          return room.hide ? null : (
+            <Room key={index} room={room} setRoomModal={setRoomModal}></Room>
+          );
+        })}
       </RoomContainer>
     </BuildingDiv>
   );
