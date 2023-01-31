@@ -25,7 +25,9 @@ function App() {
 
   if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
     //use local api if development
-    requestPath = "http://localhost:5000/schedule/get?dayOffset=";
+    requestPath =
+      "http://192.168.1.89/room-reservation/schedule/get?dayOffset=";
+    //requestPath = "https://localhost:5001/schedule/get?dayOffset=";
   }
 
   useEffect(() => {
