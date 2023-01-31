@@ -4,7 +4,7 @@ import LoadingSpin from "react-loading-spin";
 export const LoadingScreen = () => {
   return (
     <LoadingContainer>
-      {/* <LoadingSpin primaryColor="#456990" secondaryColor="#49BEAA" /> */}
+      <LoadingSpin primaryColor="#456990" secondaryColor="#49BEAA" />
       <LoadingText>Hämtar salsschema...</LoadingText>
     </LoadingContainer>
   );
