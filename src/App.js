@@ -21,7 +21,7 @@ function App() {
     useState(false);
 
   let requestPath =
-    "https://ledigasalar.online/room-reservation/schedule/get?dayOffset=";
+    "https://sakurapi.se/room-reservation/schedule/get?dayOffset=";
 
   if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
     //use local api if development
