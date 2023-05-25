@@ -12,6 +12,7 @@ import { BuildingContainer } from "./Components/BuildingContainer";
 import { DayOffsetPicker } from "./Components/DayOffsetPicker";
 import { BuildingInformationHeader } from "./Components/BuildingInformationHeader";
 import { Footer } from "./Components/Footer";
+import ErrorMessage from "./Components/ErrorMessage";
 
 function App() {
   const [roomModal, setRoomModal] = useState(undefined);
@@ -25,9 +26,9 @@ function App() {
 
   if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
     //use local api if development
-    requestPath =
-      "http://192.168.1.89/room-reservation/schedule/get?dayOffset=";
-    //requestPath = "https://localhost:5001/schedule/get?dayOffset=";
+    //requestPath =
+    // "http://192.168.1.89/room-reservation/schedule/get?dayOffset=";
+    //requestPath = "http://localhost:5000/schedule/get?dayOffset=";
   }
 
   useEffect(() => {
@@ -75,7 +76,13 @@ function App() {
             <Footer />
           </div>
         ) : (
-          <LoadingScreen />
+          <>
+            {apiResponse.scheduleResponseCode ? (
+              <ErrorMessage error={apiResponse} />
+            ) : (
+              <LoadingScreen />
+            )}
+          </>
         )}
       </header>
     </div>
