@@ -38,19 +38,9 @@ const ErrorMessage = ({ error }) => {
       <Header>KTHs server gav ett fel 😔</Header>
       <VerticalSpacing height={1} />
       <Body>
-        Jag vet inte så mycket mer än att KTHs server gav ett fel med felkoden "
-        {error.scheduleResponseCode}"
+        Jag har varit i kontakt med KTH och de har varit hjälpsamma i att
+        åtgärda problemet. Sidan kommer snart att fungera igen.
       </Body>
-      {error.scheduleResponseCode === 403 && (
-        <>
-          <VerticalSpacing height={1} />
-          <Body>
-            Kanske är det med flit för de inte vill att vi ska kunna se en
-            översikt av salscheman, kanske är det bara ett misstag, vem vet. Vi
-            får se om de fixar det, annars kanske vi måste ringa och klaga
-          </Body>
-        </>
-      )}
       <VerticalSpacing height={2} />
       <Body>Felmeddelandet som gavs var:</Body>
       <ErrorInformation>{error.scheduleResponseMessage}</ErrorInformation>
