@@ -20,6 +20,7 @@ function App() {
   const [apiResponse, setApiResponse] = useState([]);
   const [informationHeaderVisible, setInformationHeaderVisible] =
     useState(false);
+  const [error, setError] = useState(false);
 
   let requestPath =
     "https://sakurapi.se/room-reservation/schedule/get?dayOffset=";
@@ -32,12 +33,16 @@ function App() {
   }
 
   useEffect(() => {
-    fetch(requestPath + dayOffset)
-      .then((response) => response.json())
-      .then((responseData) => {
+    fetch(requestPath + dayOffset).then((response) => {
+      console.log(response);
+      if (!response.ok) {
+        setError(true);
+      }
+      response.json().then((responseData) => {
         console.log(responseData);
         setApiResponse(responseData);
       });
+    });
   }, [dayOffset, requestPath]);
 
   return (
@@ -77,7 +82,7 @@ function App() {
           </div>
         ) : (
           <>
-            {apiResponse.scheduleResponseCode ? (
+            {apiResponse.scheduleResponseCode || error ? (
               <ErrorMessage error={apiResponse} />
             ) : (
               <LoadingScreen />

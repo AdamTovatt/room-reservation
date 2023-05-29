@@ -35,15 +35,12 @@ const VerticalSpacing = ({ height }) => {
 const ErrorMessage = ({ error }) => {
   return (
     <ErrorContainer>
-      <Header>KTHs server gav ett fel 😔</Header>
+      <Header>Det blev något fel när sidan skulle laddas 😔</Header>
       <VerticalSpacing height={1} />
       <Body>
-        Jag har varit i kontakt med KTH och de har varit hjälpsamma i att
-        åtgärda problemet. Sidan kommer snart att fungera igen.
+        Om du är nyfiken på vad som gick fel kan du kolla på nätverksanropen
+        sidan gör
       </Body>
-      <VerticalSpacing height={2} />
-      <Body>Felmeddelandet som gavs var:</Body>
-      <ErrorInformation>{error.scheduleResponseMessage}</ErrorInformation>
     </ErrorContainer>
   );
 };
