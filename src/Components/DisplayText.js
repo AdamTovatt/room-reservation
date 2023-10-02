@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Color } from "./constants";
 
-const ErrorContainer = styled.div`
+const TextContainer = styled.div`
   display: flex;
   max-width: 30rem;
   flex-direction: column;
@@ -27,18 +27,20 @@ const VerticalSpacing = ({ height }) => {
   return <div style={{ height: height + "rem" }}></div>;
 };
 
-const ErrorMessage = ({ error }) => {
+const DisplayText = ({
+  header = undefined,
+  body = undefined,
+  subBody = undefined,
+}) => {
   return (
-    <ErrorContainer>
-      <Header>Det blev något fel när sidan skulle laddas 😔</Header>
+    <TextContainer>
+      <Header>{header}</Header>
       <VerticalSpacing height={1} />
-      <Body>
-        Om du är nyfiken på vad som gick fel kan du kolla på nätverksanropen
-        sidan gör. Maila gärna adam@sakur.se om det har varit så här länge och
-        inte verkar hända något.
-      </Body>
-    </ErrorContainer>
+      <Body>{body}</Body>
+      <VerticalSpacing height={2} />
+      <Body>{subBody}</Body>
+    </TextContainer>
   );
 };
 
-export default ErrorMessage;
+export default DisplayText;

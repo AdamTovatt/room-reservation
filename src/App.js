@@ -13,6 +13,7 @@ import { DayOffsetPicker } from "./Components/DayOffsetPicker";
 import { BuildingInformationHeader } from "./Components/BuildingInformationHeader";
 import { Footer } from "./Components/Footer";
 import ErrorMessage from "./Components/ErrorMessage";
+import DisplayText from "./Components/DisplayText";
 
 function App() {
   const [roomModal, setRoomModal] = useState(undefined);
@@ -21,6 +22,9 @@ function App() {
   const [informationHeaderVisible, setInformationHeaderVisible] =
     useState(false);
   const [error, setError] = useState(false);
+  const [statusMessage, setStatusMessage] = useState(
+    "Sidan är nere någon dag\nJag håller på och flyttar servern för den här sidan just nu så den kommer inte funka på några dagar. Men den kommer tillbaka strax!"
+  );
 
   let requestPath =
     "https://sakurapi.se/room-reservation/schedule/get?dayOffset=";
@@ -85,7 +89,17 @@ function App() {
             {apiResponse.scheduleResponseCode || error ? (
               <ErrorMessage error={apiResponse} />
             ) : (
-              <LoadingScreen />
+              <>
+                {!statusMessage || statusMessage === "" ? (
+                  <LoadingScreen />
+                ) : (
+                  <DisplayText
+                    header={statusMessage.split("\n")[0]}
+                    body={statusMessage.split("\n")[1]}
+                    subBody={statusMessage.split("\n")[2]}
+                  />
+                )}
+              </>
             )}
           </>
         )}
