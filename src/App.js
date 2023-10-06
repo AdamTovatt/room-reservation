@@ -22,9 +22,7 @@ function App() {
   const [informationHeaderVisible, setInformationHeaderVisible] =
     useState(false);
   const [error, setError] = useState(false);
-  const [statusMessage, setStatusMessage] = useState(
-    "Sidan är nere någon dag\nJag håller på och flyttar servern för den här sidan just nu så den kommer inte funka på några dagar. Men den kommer tillbaka strax!"
-  );
+  const [statusMessage, setStatusMessage] = useState("");
 
   let requestPath =
     "https://sakurapi.se/room-reservation/schedule/get?dayOffset=";
