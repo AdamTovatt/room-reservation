@@ -8,7 +8,7 @@ const TextContainer = styled.div`
   justify-content: center;
   align-items: center;
   font-family: "Jost";
-  color: ${Color.offWhite};
+  color: ${Color.OffWhite};
 
   @media (max-width: 500px) {
     max-width: calc(100vw - 2rem);
@@ -21,9 +21,13 @@ const Header = styled.div`
 
 const Body = styled.div`
   font-size: 1rem;
+
+  a {
+    color: ${Color.OffWhite};
+  }
 `;
 
-const VerticalSpacing = ({ height }) => {
+export const VerticalSpacing = ({ height }) => {
   return <div style={{ height: height + "rem" }}></div>;
 };
 
